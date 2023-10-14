@@ -379,11 +379,12 @@ public class UberUtil
         int blockId = world.getBlockId(x,y,z);
         Block block = Block.getBlock(blockId);
 
-        if(block == Block.basalt||block == Block.stone||block == Block.granite||block == Block.limestone|| block == Block.obsidian)
+
+        if(blockId == Block.basalt.id||blockId == Block.stone.id||blockId == Block.granite.id||blockId == Block.limestone.id|| blockId == Block.obsidian.id)
         {
             return blockId;
         }
-        else if(block == CaveUberhaul.flowstone||block == CaveUberhaul.flowstonePillar||block instanceof BlockStalagmite || block instanceof BlockStalagtite)
+        else if(blockId == CaveUberhaul.flowstone.id || blockId == CaveUberhaul.flowstonePillar.id || block instanceof BlockStalagmite || block instanceof BlockStalagtite)
         {
             return CaveUberhaul.flowstonePillar.id;
         }
