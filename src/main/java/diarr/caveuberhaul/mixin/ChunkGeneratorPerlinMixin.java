@@ -1,5 +1,7 @@
 package diarr.caveuberhaul.mixin;
 
+import diarr.caveuberhaul.gen.CaveBiomeProvider;
+import diarr.caveuberhaul.gen.FastNoiseLite;
 import diarr.caveuberhaul.gen.MapGenNoiseCaves;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.chunk.Chunk;
@@ -18,6 +20,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 //Huge thanks to Worley and the Worley Caves mod https://www.curseforge.com/minecraft/mc-mods/worleys-caves for explaining how alot of this works.
 @Mixin(value= ChunkGeneratorPerlin.class,remap = false)
 public class ChunkGeneratorPerlinMixin extends ChunkGenerator {
+
+    private CaveBiomeProvider caveBiomeProvider = new CaveBiomeProvider();
+    private static FastNoiseLite caveBiomeDecoratorNoiseMap = new FastNoiseLite();
+
     protected MapGenBase caveGen = new MapGenNoiseCaves(false);
 
     @Shadow
@@ -42,4 +48,6 @@ public class ChunkGeneratorPerlinMixin extends ChunkGenerator {
         this.caveGen.generate(this.world, chunk.xPosition, chunk.zPosition, blocks);
         cir.setReturnValue(blocks);
     }
+
+
 }

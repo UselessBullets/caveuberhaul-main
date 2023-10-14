@@ -9,7 +9,6 @@ import net.minecraft.core.world.World;
 import net.minecraft.core.world.generate.MapGenBase;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -51,8 +50,7 @@ public class MapGenBaseMixin {
         ci.cancel();
     }
 
-    @Unique
-    private void generateNoiseCaves(World world, int baseChunkX, int baseChunkZ, short[]data)
+    private void generateNoiseCaves(World world,int baseChunkX,int baseChunkZ, short[]data)
     {
         int chunkMaxHeight = getMaxSurfaceHeight(data,world);
 
@@ -183,8 +181,7 @@ public class MapGenBaseMixin {
         }
     }
 
-    @Unique
-    private void digBlock(short[] data , int localX, int localY, int localZ, World world)
+    private void digBlock(short[] data , int localX,int localY,int localZ,World world)
     {
             if(localY<= lavaDepth)
             {
@@ -201,8 +198,7 @@ public class MapGenBaseMixin {
             this.cutoffValues[localX][localY][localZ] = true;
     }
 
-    @Unique
-    private int getMaxSurfaceHeight(short[] data, World world)
+    private int getMaxSurfaceHeight(short[] data,World world)
     {
         int max = 0;
         int[][] testcords = {{2, 6}, {3, 11}, {7, 2}, {9, 13}, {12,4}, {13, 9}};
@@ -218,14 +214,12 @@ public class MapGenBaseMixin {
         return max;
     }
 
-    @Unique
-    private int getSurfaceHeight(int localX, int localZ, short[] data, World world)
+    private int getSurfaceHeight(int localX, int localZ,short[] data,World world)
     {
         // Using a recursive binary search to find the surface
         return UberUtil.recursiveBinarySurfaceSearchUp(localX, localZ, world.getHeightBlocks()-1, 0,data,world);
     }
 
-    @Unique
     private boolean isFluidBlock(Block block)
     {
         return block instanceof BlockFluid;
