@@ -97,17 +97,11 @@ public class UberUtil
 
         for (int x = 0; x < xzScale; ++x) {
             for (int z = 0; z < xzScale; ++z) {
-
-                float x0y0z0 = NoiseSamples[x][z];
-                float x0y0z1 = NoiseSamples[x][z + 1];
-                float x1y0z0 = NoiseSamples[x + 1][z];
-                float x1y0z1 = NoiseSamples[x + 1][z + 1];
-
                 // noise values of 4 corners at y=0
-                float noiseStartX0 = x0y0z0;
-                float noiseStartX1 = x0y0z1;
-                float noiseEndX0 = x1y0z0;
-                float noiseEndX1 = x1y0z1;
+                float noiseStartX0 = NoiseSamples[x][z];
+                float noiseStartX1 = NoiseSamples[x][z + 1];
+                float noiseEndX0 = NoiseSamples[x + 1][z];
+                float noiseEndX1 = NoiseSamples[x + 1][z + 1];
 
                 float noiseStartZ = noiseStartX0;
                 float noiseEndZ = noiseStartX1;
@@ -393,7 +387,7 @@ public class UberUtil
         {
             return CaveUberhaul.flowstonePillar.id;
         }
-        else if(block instanceof BlockLeavesBase ||block instanceof BlockLog ||block instanceof BlockStalagtite||block instanceof BlockStalagmite)
+        else if(block instanceof BlockLeavesBase ||block instanceof BlockLog)
         {
             return 0;
         }
